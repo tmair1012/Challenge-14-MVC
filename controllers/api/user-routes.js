@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const sequelize = require('../../config/connection');
+const sequelize = require('sequelize');
 const { User } = require('../../models');
 
 //Get all Users
@@ -133,3 +133,5 @@ router.delete('/:id', (req, res) => {
         res.status(500).json(err);
     });
 });
+
+module.exports = router;

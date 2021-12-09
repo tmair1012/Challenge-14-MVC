@@ -1,4 +1,5 @@
 //Dependencies
+const path = require('path');
 const express = require('express');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
@@ -10,12 +11,13 @@ const PORT = process.env.PORT || 3301;
 
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true}))
+app.use(express.urlencoded({ extended: false}))
 app.use(require('./controllers'))
 
 //Create session
-const SequelizeStore = require('connect-session-sequelize')(session.store);
-
+const sequelize = require('./config/connection')
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+ 
 const sess = {
     secret: 'i hate secrets',
     cookie: {},
@@ -26,15 +28,18 @@ const sess = {
     })
 };
 
-app.use(session(session.sess));
+app.use(session(sess));
 
-//middleware
+
+//middlewar
 app.use(express.static(path.join(__dirname, 'public')));
-app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
+
 app.set('view engine', 'handlebars');
 
 
+app.use(require('./controllers'));
+
 //connection to sequelize and server
 sequelize.sync({ force: false}).then(() => {
-    app.listen(PORT, function() { console.log('now listening on Port' + PORT)});
+    app.listen(PORT, () => console.log('now listening on Port' + PORT));
 });

@@ -14,8 +14,13 @@ Post.init({
         type: DataTypes.STRING,
         allowNull: false,
     },
-    comment: {
+    post_body: {
         type: DataTypes.STRING,
+        max: 280,
+        allowNull: false
+    },
+    comment_id: {
+        type: DataTypes.INTEGER,
         allowNull: true
     },
     user_id: {
