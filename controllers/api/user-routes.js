@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('sequelize');
-const { User } = require('../../models');
+const { User, Post } = require('../../models');
 
 //Get all Users
 
@@ -22,6 +22,10 @@ router.get('/:id', (req, res) => {
         where: {
             id: req.params.id
         },
+        include: [{
+            model: Post,
+            attributes: ['id', 'title', 'post_body']
+        }]
     })
     .then(dbUser => res.json(dbUser))
     .catch(err => {
@@ -77,8 +81,10 @@ router.post('/login', (req, res) => {
             req.session.loggedIn = true;
 
             res.json({ user: dbUser, message: 'Logged in Successfully!' });
+            
         });
     });
+    
 });
 
 //allow user to logout

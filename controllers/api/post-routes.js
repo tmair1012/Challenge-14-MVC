@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
         include: [
             {
                 model: Comment,
-                attributes: ['id', 'comment_body', 'user_id'],
+                attributes: ['id', 'comment_body', 'user_id', 'post_id'],
                 include: {
                     model: User,
                     attributes: ['username']
@@ -36,7 +36,7 @@ router.get('/:id', (req, res) => {
         include: [
             {
                 model: Comment,
-                attributes: ['id', 'comment_body', 'user_id'],
+                attributes: ['id', 'post_body', 'user_id', 'post_id'],
                 include: {
                     model: User,
                     attributes: ['username']
@@ -65,7 +65,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     Post.create({
         title: req.body.title,
-        comment: req.body.comment,
+        post_body: req.body.post_body,
         user_id: req.session.user_id
     })
     .then(dbPostData => res.json(dbPostData))
@@ -79,7 +79,8 @@ router.post('/', (req, res) => {
 router.put('/upvote', (req, res) => {
     post.update(
         {
-            title: req.body.title
+            title: req.body.title,
+            post_body: req.body.post_body
         },
         {
         where: {

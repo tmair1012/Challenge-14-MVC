@@ -19,10 +19,6 @@ Post.init({
         max: 280,
         allowNull: false
     },
-    comment_id: {
-        type: DataTypes.INTEGER,
-        allowNull: true
-    },
     user_id: {
         type: DataTypes.INTEGER,
         references: {
