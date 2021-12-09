@@ -30,6 +30,11 @@ User.init({
             len: [4]
         }
     },
+    username: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        max: 20
+    }
 },
     {
         hooks: {

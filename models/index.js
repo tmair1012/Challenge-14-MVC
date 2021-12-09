@@ -11,3 +11,5 @@ Post.belongsTo(User, {
 User.hasMany(Post, {
     foreignKey: 'user_id'
 })
+
+module.exports = { User, Post };
