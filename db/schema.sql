@@ -1,3 +1,3 @@
-DROP DATABASE IF EXISTS forum_board;
+DROP DATABASE IF EXISTS techblog;
 
-CREATE DATABASE forum_board;
+CREATE DATABASE techblog;
