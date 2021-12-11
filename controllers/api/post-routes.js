@@ -24,6 +24,7 @@ router.get('/', (req, res) => {
         console.log(err);
         res.status(500).json(err);
     });
+    console.log(dbPostData);
 });
 
 //get a post by its id

@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../models/');
-const { post } = require('./homepage-routes');
 
 // get our posts for the dashboard
 router.get('/', (req, res) => {
@@ -9,6 +8,11 @@ router.get('/', (req, res) => {
         where: {
             user_id: req.session.id
         },
+        attributes:[
+            'id',
+            'post_body',
+            'title'
+        ],
         include: [
             {
                 model: Comment,
@@ -21,7 +25,8 @@ router.get('/', (req, res) => {
         ]
     })
     .then(dbPostData => {
-        const posts = dbPostData.map(post => post.get({ plain: true }));
+        console.log(dbPostData);
+        const posts = dbPostData;
         res.render('dashboard', { posts, loggedIn: true })
     })
     .catch(err => {

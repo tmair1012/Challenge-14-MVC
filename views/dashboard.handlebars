@@ -15,13 +15,13 @@
     <button type='submit' class='addPostButton'>Add Post</button>
 </form>
 
-{{#if posts.length}}
+{{#if posts}}
 <section>
     <h2>Your Posts</h2>
     <ol>
-        {{#each posts as |post|}}
+        {{#each posts}}
         <li>
-        {{> post-info post}}
+        {{posts.title}}
         </li>
         {{/each}}
     </ol>
