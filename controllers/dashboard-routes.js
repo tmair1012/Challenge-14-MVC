@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
     console.log(req.session);
     Post.findAll({
         where: {
-            user_id: req.session.id
+            user_id: req.session.user_id
         },
         attributes:[
             'id',
@@ -25,8 +25,8 @@ router.get('/', (req, res) => {
         ]
     })
     .then(dbPostData => {
-        const posts = dbPostData;
-        res.render('dashboard', { posts, loggedIn: true })
+        console.log(dbPostData);
+        res.render('dashboard', { posts: dbPostData, loggedIn: true })
     })
     .catch(err => {
         console.log(err);
