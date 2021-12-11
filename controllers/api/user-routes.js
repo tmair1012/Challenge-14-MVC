@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const sequelize = require('sequelize');
 const { User, Post } = require('../../models');
-
+const session = require('express-session')
 //Get all Users
 
 router.get('/', (req, res) => {
@@ -38,9 +38,11 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     User.create({
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        username: req.body.username
     })
     .then(dbUser => {
+        console.log(dbUser);
         req.session.save(() => {
             req.session.id = dbUser.id
             req.session.email = dbUser.email;

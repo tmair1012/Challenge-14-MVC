@@ -36,7 +36,7 @@ router.get('/:id', (req, res) => {
         include: [
             {
                 model: Comment,
-                attributes: ['id', 'post_body', 'user_id', 'post_id'],
+                attributes: ['id', 'comment_body', 'user_id', 'post_id'],
                 include: {
                     model: User,
                     attributes: ['username']
@@ -66,7 +66,7 @@ router.post('/', (req, res) => {
     Post.create({
         title: req.body.title,
         post_body: req.body.post_body,
-        user_id: req.session.user_id
+        user_id: req.body.user_id
     })
     .then(dbPostData => res.json(dbPostData))
     .catch(err => {
@@ -76,8 +76,8 @@ router.post('/', (req, res) => {
 })
 
 //update a post
-router.put('/upvote', (req, res) => {
-    post.update(
+router.put('/:id', (req, res) => {
+    Post.update(
         {
             title: req.body.title,
             post_body: req.body.post_body
