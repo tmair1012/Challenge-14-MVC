@@ -1,4 +1,3 @@
-const { response } = require("express");
 
 async function newPost(event) {
     event.preventDefault

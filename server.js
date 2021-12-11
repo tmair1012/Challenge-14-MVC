@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false}))
-app.use(require('./controllers'))
+
 
 //Create session
 const sequelize = require('./config/connection')

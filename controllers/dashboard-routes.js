@@ -4,9 +4,10 @@ const { post } = require('./homepage-routes');
 
 // get our posts for the dashboard
 router.get('/', (req, res) => {
+    console.log(req.session);
     Post.findAll({
         where: {
-            user_id: req.session.user_id
+            user_id: req.session.id
         },
         include: [
             {
@@ -32,7 +33,7 @@ router.get('/', (req, res) => {
 
 //edit posts page
 router.get('/:id', (req, res) => {
-    post.findByPk(req.params.id, {
+    Post.findByPk(req.params.id, {
         include: [
             {
                 model: Comment,
