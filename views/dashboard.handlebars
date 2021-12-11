@@ -21,13 +21,14 @@
     <ol>
         {{#each posts}}
         <li>
+        <h2>Post Title</h2>
         {{dataValues.title}}
+        <br>
+        <h2>Post Body</h2>
         {{dataValues.post_body}}
-        <button type='button' id='editPostBtn'>
-            <a href='/dashboard/edit/{{dataValues.id}}'></a>
-            Edit This Post
-        </button>
+            
         </li>
+        <div><a href='/dashboard/edit/{{dataValues.id}}'>Edit Post</a></div>
         {{/each}}
     </ol>
 </section>

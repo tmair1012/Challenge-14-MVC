@@ -50,7 +50,15 @@ router.get('/edit/:id', (req, res) => {
         ]
     })
     .then(dbPostData => {
-            res.render('edit-post', { posts: dbPostData, loggedIn: true })
+        if (dbPostData) {
+
+            res.render('edit-post', {
+                posts : dbPostData,
+                loggedIn: true
+            })
+        } else {
+            res.status(404).end();
+        }
     })
     .catch(err => {
         res.status(500).json(err);
