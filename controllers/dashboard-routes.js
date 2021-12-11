@@ -36,7 +36,7 @@ router.get('/', (req, res) => {
 
 
 //edit posts page
-router.get('/:id', (req, res) => {
+router.get('/edit/:id', (req, res) => {
     Post.findByPk(req.params.id, {
         include: [
             {
@@ -50,16 +50,7 @@ router.get('/:id', (req, res) => {
         ]
     })
     .then(dbPostData => {
-        if (dbPostData) {
-            const post = dbPostData.get({ plain: true });
-
-            res.render('edit-post', {
-                post,
-                loggedIn: true
-            })
-        } else {
-            res.status(404).end();
-        }
+            res.render('edit-post', { posts: dbPostData, loggedIn: true })
     })
     .catch(err => {
         res.status(500).json(err);

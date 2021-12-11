@@ -1,11 +1,18 @@
 <div>
     <a href='/dashboard'> &larr; DashBoard</a>
     <h2>Edit Post</h2>
-
-    <form class=editPost>
+    {{#if posts}}
+    <form class='editPost'>
         <div>
-            <input name='postTitle' type='text' value='{{post.title}}' />
+            {{dataValues.title}}
+            <input id='postTitleEdit' type='text' value='{{dataValues.title}}' />
+        </div>
+        <div>
+            <input id='postBodyEdit' type='text' value='{{dataValues.body}}'/>
         </div>
         <div></div>
+        <button type='submit' id='editPost'>Save Post</button>
+        <button type='button' id='deletePost'>Delete Post</button>
     </form>
+    {{/if}}
 </div>

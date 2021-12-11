@@ -23,6 +23,10 @@
         <li>
         {{dataValues.title}}
         {{dataValues.post_body}}
+        <button type='button' id='editPostBtn'>
+            <a href='/dashboard/edit/{{dataValues.id}}'></a>
+            Edit This Post
+        </button>
         </li>
         {{/each}}
     </ol>
