@@ -46,9 +46,10 @@ router.post('/', (req, res) => {
         req.session.save(() => {
             req.session.id = dbUser.id
             req.session.email = dbUser.email;
+            req.session.username = dbUser.username;
             req.session.loggedIn = true;
 
-            res.json(dbUser)
+            res.json(dbUser);
         });
     })
     .catch(err => {
