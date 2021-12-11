@@ -25,7 +25,6 @@ router.get('/', (req, res) => {
         ]
     })
     .then(dbPostData => {
-        console.log(dbPostData);
         const posts = dbPostData;
         res.render('dashboard', { posts, loggedIn: true })
     })

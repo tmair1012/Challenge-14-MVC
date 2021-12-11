@@ -24,7 +24,6 @@ router.get('/', (req, res) => {
         console.log(err);
         res.status(500).json(err);
     });
-    console.log(dbPostData);
 });
 
 //get a post by its id
@@ -67,7 +66,7 @@ router.post('/', (req, res) => {
     Post.create({
         title: req.body.title,
         post_body: req.body.post_body,
-        user_id: req.body.user_id
+        user_id: req.session.user_id
     })
     .then(dbPostData => res.json(dbPostData))
     .catch(err => {
